@@ -3,25 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Restaurant;
+use App\Models\Product;
 class HomeController extends Controller
 {
-    public function admin(){
-       
-        return view('admin.panel');
-    }
-
-    public function categoryList(){
-        return view('admin.category-list');
-    }
-    public function productList(){
-        return view('admin.product-list');
-    }
-    public function restaurantList(){
-        return view('admin.restaurant-list');
-    }
-
+    
     public function home(){
-        return view('front.index');
+
+        $restaurants=Restaurant::all();
+
+        return view('front.index',['restaurants'=>$restaurants]);
+        
+    }
+
+    public function restaurant($id){
+        $restaurant=Restaurant::findOrFail($id);
+        $products=Product::where('restaurant_id','=',$restaurant->id)->get();
+        return view('front.restaurant',[
+            'restaurant'=>$restaurant,
+            'products'=>$products
+        ]);
     }
 }
