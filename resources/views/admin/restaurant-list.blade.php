@@ -34,9 +34,9 @@
             <tr>    
               <td>{{$restaurant->title  }}</td>
               <td>{{$restaurant->address }}</td>
-              <td><img src="{{ asset('img/'. $restaurant->image.'.jpg') }}" width="100" height="50" alt="restaurant image"></td>
-              <td><a href="#">Delete</a></td>
-              <td><a href="#">Edit</a></td>
+              <td><img src="{{ asset('img/'. $restaurant->image) }}" width="100" height="50" alt="restaurant image"></td>
+              <td><a href="{{ route('restaurant-delete',['id'=>$restaurant->id]) }}">Delete</a></td>
+              <td><a href="{{ route('restaurant-edit',['id'=>$restaurant->id]) }}">Edit</a></td>
               
               </tr>
             @endforeach

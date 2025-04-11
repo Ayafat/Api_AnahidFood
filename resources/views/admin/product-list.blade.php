@@ -42,8 +42,8 @@
               <td>{{$product->price  }}</td>
               <td>{{$product->category()->name}}</td>
               <td>{{$product->restaurant()->title}}</td>
-              <td><a href="#">Delete</a></td>
-              <td><a href="#">Edit</a></td>
+              <td><a href="{{ route('product-delete',['id'=>$product->id]) }}">Delete</a></td>
+              <td><a href="{{ route('product-edit',['id'=>$product->id]) }}">Edit</a></td>
             </tr>
               @endforeach 
               
