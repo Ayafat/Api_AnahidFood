@@ -10,7 +10,7 @@
                     <a href='{{ route('restaurant',['id'=>$restaurant->id]) }}'>
                     <h4 class="card-title">{{ $restaurant->title }}</h4>
                     </a>
-                    <img src="{{asset('img/'.$restaurant->image.'.jpg')  }}" width="170" height="100" alt="">
+                    <img src="{{asset('img/'.$restaurant->image)  }}" width="170" height="100" alt="">
                     <p class="card-text">{{ $restaurant->address }}</p>
                 
                 </div>

@@ -11,7 +11,7 @@
         <!-- نمایش  تصویر رستوران -->
         
         <div class="text-center mb-5">
-            <img src="{{ asset('img/'.$restaurant->image.'.jpg') }}" alt=" " class="img-fluid rounded" style="max-width: 600px;">
+            <img src="{{ asset('img/'.$restaurant->image) }}" alt=" " class="img-fluid rounded" style="max-width: 600px;">
         </div>
         <div class="row">
             <p class="text-center">{{ $restaurant->address }}</p>
