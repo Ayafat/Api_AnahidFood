@@ -22,6 +22,12 @@
               <label for="image">Image</label>
               <input type="file" class="form-control" name="image" id="image" placeholder="Image" value="{{ $restaurant->image }}">
             </div>
+
+            <div class="formgroup">
+              <label for="slide">show in Slide</label>
+              <input type="checkbox" class="form-control"  id="slide" name="slide" value=1 {{ $restaurant->slide == 1 ? 'checked' :'' }} >
+
+            </div>
             
             
           </div>

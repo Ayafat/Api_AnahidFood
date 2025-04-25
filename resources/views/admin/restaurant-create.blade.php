@@ -28,10 +28,14 @@
             <span>invalid image</span>  
             @enderror
               <label for="image">Image</label>
-              <input type="file" class="form-control" name="image" id="image" placeholder="Image">
+              <input type="file" class="form-control" name="image" id="image" placeholder="Image" value=true>
             </div>
-            
-            
+            <br>
+            <div class="formgroup">
+              <label for="slide">show in Slide</label>
+              <input type="checkbox" class="form-control"  id="slide" name="slide" value=1 >
+
+            </div>
           </div>
           <!-- /.card-body -->
 

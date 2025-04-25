@@ -44,6 +44,7 @@ class AdminController extends Controller
         $name=$request->input('name');
         $address=$request->input('address');
         $imageName = null;
+        $slide=$request->input('slide');
        // $image=$request->input('image');
        if ($request->hasFile('image')) {
         $uploadedFile = $request->file('image');
@@ -67,7 +68,8 @@ class AdminController extends Controller
         Restaurant::create([
             'title'=>$name,
             'address'=>$address,
-            'image'=>$imageName
+            'image'=>$imageName,
+            'slide'=>$slide
         ]);
         return redirect(route('restaurant-list'));
     }
@@ -157,7 +159,7 @@ class AdminController extends Controller
             'name' => 'required|string',
             'address' => 'required|string|max:500',
             'image' => 'nullable|mimes:png,jpg',
-            'is_slide' => 'nullable|boolean',
+            'slide' => 'nullable|boolean',
         ]);
     
         // مقدار پیش‌فرض عکس همان مقدار قبلی است
@@ -185,14 +187,14 @@ class AdminController extends Controller
         }
     
         // مقدار `is_slide` را تنظیم کنید (در صورت `null` بودن، `false` قرار دهید)
-        $isSlide = $request->input('is_slide', false);
+        $Slide = $request->input('slide', false);
     
         // آپدیت اطلاعات رستوران
         $restaurant->update([
             'title' => trim($request->input('name')),
             'address' => trim($request->input('address')),
             'image' => $imageName, // مقدار عکس فقط در صورت تغییر عوض می‌شود
-            'is_slide' => $isSlide,
+            'slide' => $Slide,
         ]);
     
         return redirect(route('restaurant-list'))->with('success', 'رستوران با موفقیت ویرایش شد.');

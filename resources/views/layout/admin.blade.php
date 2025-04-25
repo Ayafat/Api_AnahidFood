@@ -190,22 +190,28 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('product-list') }}" class="nav-link {{ request()->is('admin/product/*') ? 'active' : '' }}">
+                <a href="{{ route('product-list') }}" class="nav-link  {{ request()-> is('admin/product/*') ? 'active' :'' }}" >
                   <i class="far fa-circle nav-icon"></i>
                   <p>Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('category-list')}}" class="nav-link {{ request()->is('admin/category/*') ? 'active' : '' }}">
+                <a href="{{ route('category-list') }}"class="nav-link {{ request()-> is('admin/category/*') ? 'active' :'' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('restaurant-list') }}" class="nav-link  {{ request()->is('admin/restaurant/*') ? 'active' : '' }}">
+                <a href="{{ route('restaurant-list') }}" class="nav-link {{ request()-> is('admin/restaurant/*') ? 'active' :'' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Restaurants</p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <form action="{{ route('logout') }} "  method="POST">
+                  @csrf
+                  <button type="submit" class="nav-link " >Logout</button>
+                </form>
               </li>
             </ul>
           </li>
@@ -220,7 +226,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-   @yield('content')
+    @yield('content')
     <!-- /.content-header -->
 
    
@@ -248,24 +254,24 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src={{ asset("panel/plugins/jquery/jquery.min.js") }}></script>
+<script src={{ asset('panel/plugins/jquery/jquery.min.js') }}></script>
 <!-- Bootstrap 4 -->
-<script src = {{ asset("panel/plugins/bootstrap/js/bootstrap.bundle.min.js") }}></script>
+<script src = {{ asset('panel/plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
 <!-- DataTables  & Plugins -->
-<script src= {{ asset("panel/plugins/datatables/jquery.dataTables.min.js") }}></script>
-<script src= {{ asset("panel/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js") }}></script>
-<script src=  {{ asset("panel/plugins/datatables-responsive/js/dataTables.responsive.min.js") }}></script>
-<script src=  {{ asset("panel/plugins/datatables-responsive/js/responsive.bootstrap4.min.js") }}></script>
-<script src={{ asset("panel/plugins/datatables-buttons/js/dataTables.buttons.min.js") }} ></script>
-<script src={{ asset("panel/plugins/datatables-buttons/js/buttons.bootstrap4.min.js") }} ></script>
-<script src={{ asset("panel/plugins/jszip/jszip.min.js") }}></script>
-<script src={{ asset("panel/plugins/pdfmake/pdfmake.min.js") }}></script>
-<script src={{ asset("panel/plugins/pdfmake/vfs_fonts.js") }}></script>
-<script src={{ asset("panel/plugins/datatables-buttons/js/buttons.html5.min.js") }}></script>
-<script src={{ asset("panel/plugins/datatables-buttons/js/buttons.print.min.js") }}></script>
-<script src={{ asset("panel/plugins/datatables-buttons/js/buttons.colVis.min.js") }}></script>
+<script src={{ asset('panel/plugins/datatables/jquery.dataTables.min.js') }} ></script>
+<script src= {{ asset('panel/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}></script>
+<script src= {{ asset('panel/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}></script>
+<script src={{ asset('panel/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')  }}></script>
+<script src={{ asset('panel/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}></script>
+<script src={{ asset('panel/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}></script>
+<script src={{ asset('panel/plugins/jszip/jszip.min.js') }}></script>
+<script src={{ asset('panel/plugins/pdfmake/pdfmake.min.js') }}></script>
+<script src={{ asset('panel/plugins/pdfmake/vfs_fonts.js') }}></script>
+<script src={{ asset('panel/plugins/datatables-buttons/js/buttons.html5.min.js') }}></script>
+<script src={{ asset('panel/plugins/datatables-buttons/js/buttons.print.min.js') }}></script>
+<script src={{ asset('panel/plugins/datatables-buttons/js/buttons.colVis.min.js') }}></script>
 <!-- AdminLTE App -->
-<script src={{ asset("panel/dist/js/adminlte.min.js") }}></script>
+<script src={{ asset('panel/dist/js/adminlte.min.js') }}></script>
 <!-- Page specific script -->
 <script>
   $(function () {
