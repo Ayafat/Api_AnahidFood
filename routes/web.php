@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\LogoutController;
 
 
 Route::get('/', function () {
@@ -22,8 +25,18 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/',[HomeController::class,'home']);
+
+
+Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('/restaurants/{id}',[HomeController::class,'restaurant'])->name('restaurant');
+Route::get('/category/{id}',[HomeController::class,'category'])->name('category');
+Route::get('/searchlist',[HomeController::class,'search'])->name('searchlist');
+
+
+Route::get('/search',[HomeController::class,'search'])->name('search');
+Route::get('/category/{id}',[HomeController::class,'category'])->name('category');
+
+Route::middleware(['auth','roleAdmin'])->group(function (){
 Route::get('/admin',[AdminController::class,'admin']);
 Route::get('/admin/category/list',[AdminController::class,'categoryList'])->name('category-list');
 Route::get('/admin/category/create',[AdminController::class,'categoryCreate'])->name('category-create');
@@ -46,3 +59,7 @@ Route::post('/admin/restaurant/insert',[AdminController::class,'restaurantInsert
 Route::get('/admin/restaurant/edit/{id}',[AdminController::class,'restaurantEdit'])->name('restaurant-edit');
 Route::post('/admin/restaurant/update',[AdminController::class,'restaurantUpdate'])->name('restaurant-update');
 Route::get('/admin/restaurant/delete/{id}',[AdminController::class,'restaurantDelete'])->name('restaurant-delete');
+});
+
+Route::get('/logout',[LogoutController::class,'logout'])->name('logout');
+

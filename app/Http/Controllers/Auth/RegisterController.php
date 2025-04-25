@@ -4,47 +4,28 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
+    /**
+     * تعیین مسیر هدایت بعد از ثبت‌نام
+     */
+    protected $redirectTo = '/login';
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
+     * نمایش فرم ثبت‌نام
      */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function showRegistrationForm()
     {
-        $this->middleware('guest');
+        return view('auth.register');
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * اعتبارسنجی داده‌های ثبت‌نام
      */
     protected function validator(array $data)
     {
@@ -56,10 +37,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
+     * ایجاد کاربر جدید
      */
     protected function create(array $data)
     {
@@ -68,5 +46,23 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    /**
+     * متد ثبت‌نام که پس از ارسال فرم اجرا می‌شود
+     */
+    public function register(Request $request)
+    {
+        // اعتبارسنجی داده‌های فرم
+        $this->validator($request->all())->validate();
+
+        // ایجاد کاربر جدید
+        event(new Registered($user = $this->create($request->all())));
+
+        // لاگین نکردن کاربر به‌صورت خودکار
+        // $this->guard()->login($user);
+
+        // هدایت کاربر به صفحه لاگین همراه با پیام موفقیت
+        return redirect('/login')->with('success', 'ثبت‌نام شما با موفقیت انجام شد، لطفاً وارد شوید.');
     }
 }

@@ -2,9 +2,19 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Routing\Middleware\ValidateSignature as Middleware;
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-class ValidateSignature extends Middleware
+class ValidateSignature
 {
-    //
+    public function handle(Request $request, Closure $next)
+    {
+        if (!URL::hasValidSignature($request)) {
+            throw new AccessDeniedHttpException('لینک نامعتبر است یا منقضی شده.');
+        }
+
+        return $next($request);
+    }
 }
