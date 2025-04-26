@@ -35,7 +35,9 @@
                             
                            <h5 class="card-title">{{ $product->name }}</h5>
                            <p class="card-text">قیمت:{{ $product->price }}</p>
-                           <a href="#" class="btn btn-primary">خرید</a>
+                           @if(Auth::user())
+                           <a href="{{ route('basket.add',['product_id'=>$product->id,'restaurant_id'=>$restaurant->id]) }}" class="btn btn-primary">خرید</a>
+                           @endif
                        </div>
                    </div>
                </div>

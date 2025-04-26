@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -32,6 +33,7 @@ Route::get('/restaurants/{id}',[HomeController::class,'restaurant'])->name('rest
 Route::get('/category/{id}',[HomeController::class,'category'])->name('category');
 Route::get('/searchlist',[HomeController::class,'search'])->name('searchlist');
 
+Route::get('/basket/add/{product_id}/{restaurant_id}',[BasketController::class,'addbasket'])->name('basket.add');
 
 Route::get('/search',[HomeController::class,'search'])->name('search');
 Route::get('/category/{id}',[HomeController::class,'category'])->name('category');
