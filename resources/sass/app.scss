@@ -1,8 +1,17 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Vazir&display=swap'); // بارگذاری فونت وزیر
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// تنظیم فونت پیش‌فرض به وزیر
+body {
+    font-family: 'Vazir', sans-serif;
+}
+
+.navbar, .footer, .container, .text-dark {
+    font-family: 'Vazir', sans-serif;
+}

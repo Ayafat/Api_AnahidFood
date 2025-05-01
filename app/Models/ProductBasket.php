@@ -6,14 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductBasket extends Model
 {
-    protected $fillable=['product_id','restaurant_id','count','user_id'];
+    protected $fillable=['product_id','restaurant_id','count','user_id','basket_id'];
 
     public function restaurant(){
-        return $this->belongsTo(Restaurant::class)->first();
+        return $this->belongsTo(Restaurant::class);
     }
 
     public function product(){
-        return $this->belongsTo(Product::class)->first();
+        return $this->belongsTo(Product::class);
+    }
+
+    public function basket(){
+        return $this->belongsTo(Basket::class);
     }
 }
 

@@ -33,7 +33,13 @@ Route::get('/restaurants/{id}',[HomeController::class,'restaurant'])->name('rest
 Route::get('/category/{id}',[HomeController::class,'category'])->name('category');
 Route::get('/searchlist',[HomeController::class,'search'])->name('searchlist');
 
-Route::get('/basket/add/{product_id}/{restaurant_id}',[BasketController::class,'addbasket'])->name('basket.add');
+Route::post('/basket/add',[BasketController::class,'addbasket'])->name('basket.add');
+Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
+Route::get('/basket/edit/{id}',[BasketController::class,'editbasket'])->name('basket.edit');
+Route::post('/basket/update',[BasketController::class,'updatebasket'])->name('basket.update');
+Route::get('/basket/delete/{id}',[BasketController::class,'deletebasket'])->name('basket.delete');
+
+Route::post('/checkout/{user_id}',[BasketController::class,'checkout'])->name('basket.checkout');
 
 Route::get('/search',[HomeController::class,'search'])->name('search');
 Route::get('/category/{id}',[HomeController::class,'category'])->name('category');

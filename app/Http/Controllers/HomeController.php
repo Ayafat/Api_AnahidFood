@@ -21,6 +21,7 @@ class HomeController extends Controller
         $sliderRestaurants=Restaurant::where('slide','=',1)->orderByDesc('updated_at')->limit(4)->get();
         $categories=Category::all();
         $usercount=User::all()->count();
+        
 
         return view('front.index',[
             'restaurants'=>$restaurants,
@@ -28,7 +29,8 @@ class HomeController extends Controller
             'categories'=>$categories,
             'usercount'=>$usercount,
             'toprestaurants'=>$toprestaurants,
-            'sliderRestaurants'=>$sliderRestaurants
+            'sliderRestaurants'=>$sliderRestaurants,
+            
         ]);
         
     }
