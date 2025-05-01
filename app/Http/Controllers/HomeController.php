@@ -6,7 +6,9 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Product;
+use App\Models\ProductBasket;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -19,6 +21,7 @@ class HomeController extends Controller
         $sliderRestaurants=Restaurant::where('slide','=',1)->orderByDesc('updated_at')->limit(4)->get();
         $categories=Category::all();
         $usercount=User::all()->count();
+        
 
         return view('front.index',[
             'restaurants'=>$restaurants,
@@ -26,7 +29,8 @@ class HomeController extends Controller
             'categories'=>$categories,
             'usercount'=>$usercount,
             'toprestaurants'=>$toprestaurants,
-            'sliderRestaurants'=>$sliderRestaurants
+            'sliderRestaurants'=>$sliderRestaurants,
+            
         ]);
         
     }
@@ -34,6 +38,11 @@ class HomeController extends Controller
     public function restaurant($id,Request $request){
         $restaurant=Restaurant::findOrFail($id);
         $categories=Category::all();
+        $baskets=null;
+        if(Auth::user()){
+            $baskets=ProductBasket::where('user_id','=',Auth::user()->id)->get();
+        }
+        
         if($request->get('category')){
             $products=Product::where('restaurant_id','=',$restaurant->id)->where('category_id','=',$request->get('category'))->get();
         }else{
@@ -47,7 +56,8 @@ class HomeController extends Controller
         return view('front.restaurant',[
          'restaurant'=>$restaurant,
         'products'=>$products,
-        'categories'=>$categories
+        'categories'=>$categories,
+        'baskets'=>$baskets
      ]);
  
          }

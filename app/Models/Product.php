@@ -15,4 +15,9 @@ class Product extends Model
     public function restaurant(){
         return $this->belongsTo(Restaurant::class)->first();
     }
+
+    public function productBaskets()
+    {
+        return $this->hasMany(ProductBasket::class);
+    }
 }

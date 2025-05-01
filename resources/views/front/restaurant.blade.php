@@ -27,35 +27,66 @@
         <!-- نمایش محصولات به صورت کارت -->
         <div class="row">
             @if (count($products) > 0)
-              @foreach ($products as $product )
-             
-               <div class="col-md-4 mb-4">
-                   <div class="card">
-                       <div class="card-body">
-                            
-                           <h5 class="card-title">{{ $product->name }}</h5>
-                           <p class="card-text">قیمت:{{ $product->price }}</p>
-                           <a href="#" class="btn btn-primary">خرید</a>
-                       </div>
-                   </div>
-               </div>
-               
+                @foreach ($products as $product)
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                <p class="card-text">قیمت: {{ $product->price }} تومان</p>
+        
+                                @if(Auth::user())
+                                <form method="POST" action="{{ route('basket.add') }}" id="basket-form-{{ $product->id }}">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+                                
+                                    <div class="input-group mb-3" style="width: 120px;">
+                                       <!-- دکمه کم کردن -->
+                                        <button type="button" class="btn btn-outline-secondary" onclick="decrease(this)">-</button>
 
-               
-               @endforeach
+                                        <!-- اینپوت تعداد -->
+                                        <input type="number" name="count" class="form-control text-center" value="1" min="1" id="count-{{ $product->id }}">
 
-               @else
-               <p class="text-center">محصولی برای این رستوران ثبت نشده</p>
-              
-               @endif   
-             
-              
-          
-   </div>
+                                        <!-- دکمه زیاد کردن -->
+                                        <button type="button" class="btn btn-outline-secondary" onclick="increase(this)">+</button>
+
+                                    </div>
+                                
+                                    <button type="submit" class="btn btn-primary">خرید</button>
+                                </form>
+                                
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p class="text-center">محصولی برای این رستوران ثبت نشده</p>
+            @endif
+        </div>
+        
          </div>
+
+         <script>
+            function increase(button) {
+                var input = button.previousElementSibling;
+                input.value = parseInt(input.value) + 1;
+            }
+            
+            function decrease(button) {
+                var input = button.nextElementSibling;
+                if (parseInt(input.value) > 1) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            }
+            </script>
+
+         
+             
+     
 
         
     @endsection()
 
         
-  
+    
