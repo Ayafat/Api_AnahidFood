@@ -24,6 +24,12 @@
    
 </head>
 <body>
+
+    @if ($errors->has('error'))
+    <div class="alert alert-danger">
+        {{ $errors->first('error') }}
+    </div>
+    @endif
     <nav class="navbar navbar-expand-lg" style="background-color: #a7c957; border-radius: 10px; margin-left: 0.5%; margin-right: 0.5%;">
 
         <div class="container-fluid">

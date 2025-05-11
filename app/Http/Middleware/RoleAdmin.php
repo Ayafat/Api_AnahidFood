@@ -19,7 +19,8 @@ class RoleAdmin
             return $next($request);
         }
         
-        return redirect()->route('login');
         
+        
+        return redirect()->back()->withErrors(['error' => 'شما اجازه دسترسی به این بخش را ندارید.']);
     }
 }

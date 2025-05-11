@@ -10,9 +10,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LogoutController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
