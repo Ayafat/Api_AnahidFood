@@ -25,6 +25,18 @@
   * sidebar-mini
 -->
 <body class="hold-transition sidebar-mini">
+    @if (session('success'))
+    <div class="alert alert-success" style="direction: rtl; text-align: right;">
+        {{ session('success') }}
+    </div>
+  @endif
+
+  @if (session('error'))
+    <div class="alert alert-danger" style="direction: rtl; text-align: right;">
+        {{ session('error') }}
+    </div>
+  @endif
+
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -207,6 +219,12 @@
                   <p>Restaurants</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <form action="{{ route('admin.backup') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="nav-link btn btn-info text-white mb-2">Database BackUp</button>
+                </form>
+            </li>
               <li class="nav-item">
                 <form action="{{ route('logout') }} "  method="POST">
                   @csrf

@@ -26,7 +26,7 @@
 <body>
 
     @if ($errors->has('error'))
-    <div class="alert alert-danger">
+    <div class="alert alert-danger " style="direction: rtl; text-align: right;">
         {{ $errors->first('error') }}
     </div>
     @endif

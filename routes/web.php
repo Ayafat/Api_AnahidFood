@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminBackupController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -65,6 +66,8 @@ Route::post('/admin/restaurant/insert',[AdminController::class,'restaurantInsert
 Route::get('/admin/restaurant/edit/{id}',[AdminController::class,'restaurantEdit'])->name('restaurant-edit');
 Route::post('/admin/restaurant/update',[AdminController::class,'restaurantUpdate'])->name('restaurant-update');
 Route::get('/admin/restaurant/delete/{id}',[AdminController::class,'restaurantDelete'])->name('restaurant-delete');
+
+Route::post('/admin/backup-db', [AdminBackupController::class, 'backup'])->name('admin.backup');
 });
 
 Route::get('/logout',[LogoutController::class,'logout'])->name('logout');
